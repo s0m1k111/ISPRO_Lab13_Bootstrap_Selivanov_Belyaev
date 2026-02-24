@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="custom.css" />
     <title>Галерея портфолио</title>
     <style>
-      /* Дополнительные стили для плавности переходов */
       .gallery-item {
         transition: all 0.3s ease;
       }
@@ -190,53 +189,40 @@
 
     <!-- Скрипт для фильтрации и активной кнопки -->
     <script>
-      // Функция фильтрации галереи
       function filterGallery(category, event) {
-        // Получаем все элементы галереи
         const items = document.querySelectorAll(".gallery-item");
 
-        // Получаем все кнопки
         const buttons = document.querySelectorAll(".btn-group .btn");
 
-        // Убираем активный класс со всех кнопок
         buttons.forEach((btn) => {
           btn.classList.remove("active");
         });
 
-        // Добавляем активный класс на нажатую кнопку (если событие есть)
         if (event) {
           event.target.classList.add("active");
         }
 
-        // Фильтруем элементы
         items.forEach((item) => {
           if (category === "all" || item.dataset.category === category) {
-            item.style.display = "block"; // Показываем
+            item.style.display = "block";
           } else {
-            item.style.display = "none"; // Скрываем
+            item.style.display = "none";
           }
         });
       }
 
-      // При загрузке страницы показываем все элементы и делаем активной первую кнопку
       window.onload = function () {
-        // Показываем все элементы
         filterGallery("all", null);
 
-        // Делаем первую кнопку активной
         const firstButton = document.querySelector(".btn-group .btn");
         if (firstButton) {
           firstButton.classList.add("active");
         }
 
-        // Добавляем небольшую задержку для плавности (опционально)
         console.log("Галерея загружена и готова к фильтрации!");
       };
 
-      // Альтернативный вариант для поддержки старых браузеров
-      // (если window.onload не сработает)
       document.addEventListener("DOMContentLoaded", function () {
-        // Убеждаемся, что все элементы отображаются
         const items = document.querySelectorAll(".gallery-item");
         items.forEach((item) => {
           item.style.display = "block";
